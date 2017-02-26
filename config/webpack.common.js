@@ -43,7 +43,12 @@ module.exports = {
                 // собирает в бандл картинки и шрифты
             },
             {
-                test: /\.css$/, // styleUrl в компонентах
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                loaders: ['raw-loader', 'postcss-loader', 'sass-loader'] // scss
+            },
+            {
+                test: /\.css$/,
                 // здесь исключены все файлы стилей в компонентах!
                 exclude: helpers.root('src', 'app'),
                 loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })
@@ -51,7 +56,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 include: helpers.root('src', 'app'),
-                loader: 'raw-loader' // берет css и загружает его как строку
+                loader: ['raw-loader', 'postcss-loader'] // берет css и загружает его как строку
                 // (возвращает из импорта строкой)
             }
         ]
