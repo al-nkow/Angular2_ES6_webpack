@@ -1,6 +1,6 @@
 # Angular2 Webpack ES6 Starter (no typescript)
 
-> An Angular 2 starter kit featuring webpack, babel, karma, jasmine
+> An Angular 2 starter kit featuring webpack, babel, karma, jasmine, pug/jade, scss, postcss
 
 ## Installing
 * `fork` this repo
