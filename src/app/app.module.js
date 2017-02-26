@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { MyElement } from './components/my-comp.component';
+import { MyElement } from './components/my-component/my-comp.component';
+import { ScssPugComponent } from './components/scsspug-comp/scsspug-comp.component';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { MyElement } from './components/my-comp.component';
     ],
     declarations: [
         AppComponent,
-        MyElement
+        MyElement,
+        ScssPugComponent
     ],
     bootstrap: [
         AppComponent

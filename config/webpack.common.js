@@ -30,6 +30,10 @@ module.exports = {
                 loader:"babel-loader"
             },
             {
+                test: /\.(pug|jade)$/,
+                loader: 'pug-html-loader'
+            },
+            {
                 test: /\.html$/,
                 loader: 'html-loader' // для шаблонов компонентов
             },
