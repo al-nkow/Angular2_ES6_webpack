@@ -1,5 +1,4 @@
-// Обычно конфигурация разделяется для development, production, и test
-// Но у этих файлов есть общая часть - выделим ее в этот файл
+// общая часть конфигов (prod, dev, test)
 
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
