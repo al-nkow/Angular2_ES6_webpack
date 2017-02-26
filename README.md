@@ -7,5 +7,5 @@
 * `clone` your fork
 * `npm install` to install all dependencies
 * `npm start` to start the dev server in another tab
-* `npm build` to bild your production code
+* `npm build` to build your production code
 * `npm test` to run unit tests
