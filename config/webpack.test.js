@@ -19,6 +19,10 @@ module.exports = {
             // },
             { test: /\.js$/, exclude: /node_modules/, loader:"babel-loader" },
             {
+                test: /\.(pug|jade)$/,
+                loader: 'pug-html-loader'
+            },
+            {
                 test: /\.html$/,
                 loader: 'html-loader'
 
@@ -26,6 +30,11 @@ module.exports = {
             {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
                 loader: 'null-loader'
+            },
+            {
+                test: /\.scss$/,
+                include: helpers.root('src', 'app'),
+                loaders: ['raw-loader', 'sass-loader']
             },
             {
                 test: /\.css$/,
