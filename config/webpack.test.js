@@ -20,7 +20,7 @@ module.exports = {
             { test: /\.js$/, exclude: /node_modules/, loader:"babel-loader" },
             {
                 test: /\.(pug|jade)$/,
-                loader: 'pug-html-loader'
+                loader: ['raw-loader', 'pug-html-loader']
             },
             {
                 test: /\.html$/,
