@@ -31,7 +31,7 @@ module.exports = {
             },
             {
                 test: /\.(pug|jade)$/,
-                loader: 'pug-html-loader'
+                loader: ['raw-loader', 'pug-html-loader']
             },
             {
                 test: /\.html$/,
