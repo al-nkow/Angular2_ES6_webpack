@@ -1,6 +1,3 @@
-/**
- * чтобы запускать Angular в большинстве браузеров потребуются полифилы
- */
 import 'core-js/es6';
 import 'core-js/es7/reflect';
 require('zone.js/dist/zone');
