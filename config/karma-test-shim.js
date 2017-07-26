@@ -1,8 +1,3 @@
-// You tell Webpack to find and load the test files (the files ending in .spec.ts).
-// Each spec file imports all — and only — the application source code that it tests.
-// Webpack loads just those specific application files and ignores
-// the other files that you aren't testing.
-
 Error.stackTraceLimit = Infinity;
 
 require('core-js/es6');

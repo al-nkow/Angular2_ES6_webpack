@@ -1,22 +1,13 @@
-// для тестов не нужны внешние css файлы и картинки со шрифтами
-// потому для них используются null-loader - отключает лоадер
-
 var webpack = require('webpack');
 var helpers = require('./helpers');
 
 module.exports = {
     devtool: 'inline-source-map',
-
     resolve: {
         extensions: ['.js']
     },
-
     module: {
         rules: [
-            // {
-            //     test: /\.ts$/,
-            //     loaders: ['awesome-typescript-loader', 'angular2-template-loader']
-            // },
             { test: /\.js$/, exclude: /node_modules/, loader:"babel-loader" },
             {
                 test: /\.(pug|jade)$/,
@@ -48,13 +39,11 @@ module.exports = {
             }
         ]
     },
-
     plugins: [
         new webpack.ContextReplacementPlugin(
-            // The (\\|\/) piece accounts for path separators in *nix and Windows
             /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-            helpers.root('./src'), // location of your src
-            {} // a map of your routes
+            helpers.root('./src'),
+            {}
         )
     ]
-}
+};

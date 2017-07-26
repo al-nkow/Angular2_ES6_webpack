@@ -1,7 +1,3 @@
-// You don't precompile the TypeScript; Webpack transpiles the Typescript files on the fly,
-// in memory, and feeds the emitted JS directly to Karma.
-// There are no temporary files on disk.
-
 var webpackConfig = require('./webpack.test');
 
 module.exports = function (config) {
