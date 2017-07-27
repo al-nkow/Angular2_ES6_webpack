@@ -4,7 +4,7 @@ import { RouterModule, Router } from '@angular/router';
 import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Ng2PaginationModule } from 'ng2-pagination';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app-component/app.component';
 
 import { COMPONENTS } from './components/index';
 import {routes} from './app.routes';

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 import template from './p-docs.component.pug';
 import style from './p-docs.component.scss';
@@ -9,7 +10,8 @@ import style from './p-docs.component.scss';
     styles: [style]
 })
 export class BTDocsPageComponent {
-    constructor() {
+    constructor(@Inject(Router) router) {
+        this.router = router;
         this.blockComponents = [
             {name: 'dropdown', url: '/dropdown', active: 'state-active'},
             {name: 'label', url: '/label', active: 'state-active'},
@@ -30,5 +32,8 @@ export class BTDocsPageComponent {
             {name: 'tabs', url: '/tabs', active: 'state-active'},
             {name: 'dashboard', url: '/dashboard', active: 'state-active'}
         ];
+
+        this.router.navigate(['/dropdown']);
+
     }
 }
