@@ -1,10 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { MyElement } from './components/my-component/my-comp.component';
-import { ScssPugComponent } from './components/scsspug-comp/scsspug-comp.component';
 describe('App', () => {
     beforeEach(() => {
-        TestBed.configureTestingModule({ declarations: [AppComponent, MyElement, ScssPugComponent]});
+        TestBed.configureTestingModule({ declarations: [AppComponent]});
     });
     it ('should work', () => {
         let fixture = TestBed.createComponent(AppComponent);

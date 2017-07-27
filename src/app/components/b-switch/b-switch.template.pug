@@ -1,0 +1,11 @@
+label.switch
+    input(
+        "type"="checkbox",
+        "[ngModel]"="value",
+        "(ngModelChange)"="onValueChange($event)"
+    )
+    div.slider.round
+span(
+    "*ngIf"="title",
+    "[innerHtml]"="title"
+)

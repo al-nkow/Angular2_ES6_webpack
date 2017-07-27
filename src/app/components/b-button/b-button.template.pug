@@ -1,0 +1,22 @@
+button(
+    type='{{type}}',
+    "[attr.size]"="size",
+    "[attr.color]"="color",
+    "[disabled]"="disabled || loading",
+    "[attr.loading]"="loading ? true : null",
+    "(click)"="click()",
+    "[class.select]"="select",
+)
+    bt-spinner
+    .arrow-container("*ngIf"="select")
+        .arrow
+    .content
+        ng-content
+
+select(
+    "[(ngModel)]"="selectModel",
+    "*ngIf"="select",
+    "(ngModelChange)"="selectChange($event)",
+    "[disabled]"="disabled || loading"
+    )
+    option("*ngFor"="let option of selectOptions", "[value]"="option.value") {{option.name}}

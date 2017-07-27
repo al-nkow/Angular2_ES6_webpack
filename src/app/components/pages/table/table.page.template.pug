@@ -1,0 +1,113 @@
+article
+    h1.doc-head Table (#[.hl bt-table])
+
+    p Table with pagination, search and sort.
+
+    h2 Inputs:
+    ul
+        li #[.hl dataset] - data for table, #[.hl1 array];
+        li #[.hl header] - table name, #[.hl1 string];
+        li #[.hl search] - enable/disable search, #[.hl1 boolean];
+        li #[.hl pag] - enable/disable pagination, #[.hl1 boolean];
+        li #[.hl sort] - table sorting options, #[.hl1 object];
+        li #[.hl sort.column] - sort according to data from this column, #[.hl1 string];
+        li #[.hl sort.descending] - init sort direction, #[.hl1 string];
+        li #[.hl sort.orderColumn] - start sorting by clicking on the header of this column, #[.hl1 string];
+        li #[.hl highlight] - highlight column (if field == equal), #[.hl1 object];
+        li #[.hl server] - enable server table mode, #[.hl1 boolean];
+        li #[.hl totalItems] - total number of dataset, #[.hl1 number];
+        li #[.hl loading] - show spinner (while content loading), #[.hl1 boolean];
+
+    h2 Outputs:
+    ul
+        li #[.hl rowclick] - row click event;
+        li #[.hl rowdoubleclick] - row double click event;
+        li #[.hl rowcheck] - set checkbox checked event;
+        li #[.hl rowuncheck] - set checkbox unchecked event;
+        li #[.hl cellclick] - cell click event (emits an event if 'control' attribute of the cell is 'clickable');
+        li #[.hl requestData] - request data from the server (enable in server mode);
+
+    h2 Example usage:
+    .example
+        .example
+            bt-table(
+                header="Name of table"
+                "[dataset]"="employees",
+                "[search]"="true",
+                "(cellclick)"="openEdit($event)",
+                "(outputclick)"="openTagsEdit($event)",
+                "[sort]"="{'column':'name', 'descending': true, 'orderColumn': 'name'}",
+                "[loading]"="tableLoading",
+                "[pag]"="true"
+                )
+                bt-tcolumn(
+                    "value"="name",
+                    "control"="clickable",
+                    "header"="Name"
+                    )
+                bt-tcolumn(
+                    "value"="email",
+                    "header"="Email"
+                    )
+                bt-tcolumn(
+                    "value"="date",
+                    "header"="Date"
+                    )
+                bt-tcolumn(
+                    "value"="company",
+                    "header"="Company",
+                    "width"="150px"
+                    )
+    h2 Code:
+    bt-tabs
+        .tabs
+            bt-tab(title="Pug")
+                pre
+                    code(class="pug hljs")
+                        | bt-table(
+                        |    header="Name of table"
+                        |    "[dataset]"="employees",
+                        |    "[search]"="true",
+                        |    "(cellclick)"="openEdit($event)",
+                        |    "(outputclick)"="openTagsEdit($event)",
+                        |    "[sort]"="{{ '{' }}'column':'name', 'descending': true, 'orderColumn': 'name'{{ '}' }}",
+                        |    "[loading]"="tableLoading",
+                        |    "[pag]"="true"
+                        |    )
+                        |    bt-tcolumn(
+                        |        "value"="name",
+                        |        "control"="clickable",
+                        |        "header"="Name"
+                        |        )
+                        |    bt-tcolumn(
+                        |        "value"="email",
+                        |        "header"="Email"
+                        |        )
+                        |    bt-tcolumn(
+                        |        "value"="date",
+                        |        "header"="Date"
+                        |        )
+                        |    bt-tcolumn(
+                        |        "value"="company",
+                        |        "header"="Company",
+                        |        "width"="150px"
+                        |        )
+
+            bt-tab(title="Javascript")
+                pre
+                    code(class="javascript hljs")
+                        | employees = [
+                        |    {{ '{' }}
+                        |        "name": "Chase Bolton",
+                        |        "email": "tristique.neque.venenatis@cursusa.ca",
+                        |        "date": "20.06.2017",
+                        |        "company": "A PC"
+                        |    {{ '}' }},
+                        |    {{ '{' }}
+                        |        "name": "Lyle Wilcox",
+                        |        "email": "convallis.ligula@luctuslobortisClass.co.uk",
+                        |        "date": "12.09.2009",
+                        |        "company": "Nam Nulla Magna Corp."
+                        |    {{ '}' }} 
+                        |    ...
+                        | ]

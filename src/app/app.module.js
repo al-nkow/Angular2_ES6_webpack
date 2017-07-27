@@ -1,19 +1,42 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
+import { RouterModule, Router } from '@angular/router';
+import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { Ng2PaginationModule } from 'ng2-pagination';
 
 import { AppComponent } from './app.component';
-import { MyElement } from './components/my-component/my-comp.component';
-import { ScssPugComponent } from './components/scsspug-comp/scsspug-comp.component';
 
+import { COMPONENTS } from './components/index';
+import {routes} from './app.routes';
+
+import * as pipes from './pipes';
+import * as directives from './directives';
+import * as services from './services';
+
+const mapValuesToArray = obj => Object.keys(obj).map(key => obj[key]);
+
+window.appConfig = {dev: true};
 
 @NgModule({
     imports: [
-        BrowserModule
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule.forRoot(routes, {
+            useHash: true
+        }),
+        Ng2PaginationModule
     ],
     declarations: [
         AppComponent,
-        MyElement,
-        ScssPugComponent
+        COMPONENTS,
+        mapValuesToArray(pipes),
+        mapValuesToArray(directives),
+    ],
+    providers: [
+        FormBuilder,
+        mapValuesToArray(services),
+        // COMPONENTS_PROVIDERS,
     ],
     bootstrap: [
         AppComponent

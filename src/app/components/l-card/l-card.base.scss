@@ -1,0 +1,32 @@
+@import '../../utils/vars';
+
+:host {
+    display: flex;
+    flex-direction: column;
+    background: $bDefault;
+    border: 1px solid #dee5e7;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+
+    & >>> .header {
+        font-size: 24px;
+        padding-bottom: 10px;
+        user-select: none;
+    }
+
+    & >>> .content {
+        height: 100%;
+
+        & >>> bt-card {
+            background: $bDefault;
+            border: 0;
+            border-radius: 2px;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+        }
+    }
+
+    & >>> .footer {
+        padding-top: 10px;
+        display: flex;
+    }
+}

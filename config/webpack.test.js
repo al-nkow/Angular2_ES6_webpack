@@ -11,7 +11,7 @@ module.exports = {
             { test: /\.js$/, exclude: /node_modules/, loader:"babel-loader" },
             {
                 test: /\.(pug|jade)$/,
-                loader: 'pug-html-loader'
+                loader: ['raw-loader', 'pug-html-loader']
             },
             {
                 test: /\.html$/,
@@ -41,9 +41,9 @@ module.exports = {
     },
     plugins: [
         new webpack.ContextReplacementPlugin(
-            /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+            /angular(\\|\/)core(\\|\/)@angular/,
             helpers.root('./src'),
             {}
-        )
+        ),
     ]
 };

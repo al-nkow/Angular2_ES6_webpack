@@ -1,0 +1,98 @@
+article
+    h1 Dashboard layout (#[.hl bt-dashboard-layout])
+    p Out of the box styles and layout behavior.
+    h2 Inputs:
+    ul
+        li #[.hl leftAsideOpen] - is left aside open or not, #[.hl1 boolean];
+    h2 Outputs:
+    ul
+        li #[.hl leftAsideOpened] - emits content element of selected tab on tab select;
+        li #[.hl exit] - emits content element of selected tab on tab select;
+
+    h2 Transcluded containers:
+    ul
+        li #[.hl .header-content] - into header between aside and exit buttons;
+        li #[.hl .l-aside] - into left aside;
+            h3 Styled elements:
+            ul
+                li #[.hl .logo > svg], #[.hl .logo > h1] - logo icon and header;
+                li #[.hl .item > svg], #[.hl .logo > h2] - menu item icon and header;
+        li #[.hl .subheader] - into subheader;
+        li #[.hl .content] - into content;
+
+
+    h2 Example usage:
+    .db-wrap
+        bt-dashboard-layout#example-dashboard-layout(
+            [leftAsideOpen]="false",
+            (leftAsideState)="wrappedConsoleLog('Dashboard left aside:' + $event)",
+            (rightAsideState)="wrappedConsoleLog('Dashboard right aside:' + $event)",
+            (exit)="wrappedConsoleLog('Dashboard exit')"
+            )
+            .header-content
+                span Transcluded into header
+            .l-aside
+                .logo
+                    svg(fill='#000000', viewBox='0 0 24 24', xmlns='http://www.w3.org/2000/svg')
+                        path(d='M0 0h24v24H0z', fill='none')
+                        path(d='M20 13H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zM7 19c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM20 3H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM7 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z')
+                    h1 Logo
+                .item
+                    svg(fill='#FFFFFF', viewBox='0 0 24 24', xmlns='http://www.w3.org/2000/svg')
+                        path(d='M0 0h24v24H0z', fill='none')
+                        path(d='M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5c-.49 0-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 8h-4v-2h4v2zm0-4h-4v-2h4v2z')
+                    h2 Item
+                .item
+                    svg(fill='#FFFFFF', viewBox='0 0 24 24', xmlns='http://www.w3.org/2000/svg')
+                        path(d='M0 0h24v24H0z', fill='none')
+                        path(d='M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5c-.49 0-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 8h-4v-2h4v2zm0-4h-4v-2h4v2z')
+                    h2 Item
+                .item
+                    svg(fill='#FFFFFF', viewBox='0 0 24 24', xmlns='http://www.w3.org/2000/svg')
+                        path(d='M0 0h24v24H0z', fill='none')
+                        path(d='M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5c-.49 0-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 8h-4v-2h4v2zm0-4h-4v-2h4v2z')
+                    h2 Item
+            .subheader
+                span Transcluded into subheader
+            .content
+                span Transcluded into content
+
+    h2 Code:
+    bt-tabs(tabsPosition="center")
+        .tabs
+            bt-tab(title="Pug", [active]="true")
+                pre
+                    code(class="pug hljs")
+                        | bt-dashboard-layout#example-dashboard-layout(
+                        |     [leftAsideOpen]="false",
+                        |     (leftAsideState)="wrappedConsoleLog('Dashboard left aside:' + $event),
+                        |     (rightAsideState)="wrappedConsoleLog('Dashboard right aside:' + $event),
+                        |     (exit)="wrappedConsoleLog('Dashboard exit')
+                        |     )
+                        |         .header-content
+                        |             span Transcluded into header
+                        |         .l-aside
+                        |             .logo
+                        |                 svg(fill='#000000', viewBox='0 0 24 24', xmlns='http://www.w3.org/2000/svg')
+                        |                     path(d='M0 0h24v24H0z', fill='none')
+                        |                     path(d='M20 13H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zM7 19c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM20 3H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM7 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z')
+                        |                 h1 Logo
+                        |             .item
+                        |                 svg(fill='#FFFFFF', viewBox='0 0 24 24', xmlns='http://www.w3.org/2000/svg')
+                        |                     path(d='M0 0h24v24H0z', fill='none')
+                        |                     path(d='M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5c-.49 0-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 8h-4v-2h4v2zm0-4h-4v-2h4v2z')
+                        |                 h2 Item
+                        |             .item
+                        |                 svg(fill='#FFFFFF', viewBox='0 0 24 24', xmlns='http://www.w3.org/2000/svg')
+                        |                     path(d='M0 0h24v24H0z', fill='none')
+                        |                     path(d='M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5c-.49 0-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 8h-4v-2h4v2zm0-4h-4v-2h4v2z')
+                        |                 h2 Item
+                        |             .item
+                        |                 svg(fill='#FFFFFF', viewBox='0 0 24 24', xmlns='http://www.w3.org/2000/svg')
+                        |                     path(d='M0 0h24v24H0z', fill='none')
+                        |                     path(d='M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5c-.49 0-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 8h-4v-2h4v2zm0-4h-4v-2h4v2z')
+                        |                 h2 Item
+                        |         .subheader
+                        |             span Transcluded into subheader
+                        |         .content
+                        |             span Transcluded into content

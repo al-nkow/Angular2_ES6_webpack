@@ -1,0 +1,100 @@
+@import './../../utils/vars';
+
+.menu-wrap {
+  height: 100%;
+  overflow: auto;
+}
+.menu-head {
+  font-family: 'Oswald', sans-serif;
+  margin: 5px 0;
+  font-size: 18px;
+  font-weight: 400;
+  color: #2f3342;
+  &:first-letter {
+    text-transform: capitalize;
+  }
+}
+.menu-title {
+  font-family: 'Roboto', sans-serif;
+  margin: 5px 0 5px 20px;
+  font-size: 18px;
+  font-weight: 400;
+  color: #2f3342;
+  &:first-letter {
+    text-transform: capitalize;
+  }
+}
+
+> > > .state-active {
+  font-weight: bold!important;
+}
+> > > .simple-button {
+  background-color: #fff;
+  color: #2f3342;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  outline: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  &:hover {
+    background: rgba(98,84,178,0.1);
+  }
+}
+
+:host {
+  #example-checkbox {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #example-dashboard-layout {
+    height: 500px;
+    border: 1px solid $bDark;
+    border-radius: 2px;
+  }
+
+  #example-donut-chart {
+    > bt-donut-chart {
+      > > > .ct-series-a .ct-slice-donut {
+        stroke: $bPrimary;
+      }
+      > > > .ct-series-b .ct-slice-donut {
+        stroke: $bDanger;
+      }
+      > > > .ct-series-c .ct-slice-donut {
+        stroke: $bSuccess;
+      }
+      > > > .ct-series-d .ct-slice-donut {
+        stroke: $bDark;
+      }
+    }
+  }
+
+  #example-line-chart {
+    > bt-line-chart {
+      > > > .ct-series-a .ct-line {
+        stroke: $bPrimary;
+      }
+
+      > > > .ct-series-a .ct-point {
+        stroke: $bPrimary;
+      }
+    }
+  }
+
+  #example-bar-chart {
+    > > > .ct-series-a .ct-bar {
+      stroke: $bPrimary;
+    }
+
+    > > > .ct-bar {
+      stroke-width: 20px;
+    }
+  }
+}

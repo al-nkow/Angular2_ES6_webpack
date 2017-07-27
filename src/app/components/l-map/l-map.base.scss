@@ -1,0 +1,9 @@
+@import "./../../utils/vars.scss";
+
+:host {
+    height: 100%;
+
+    > #map {
+        height: 100%;
+    }
+}

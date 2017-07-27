@@ -1,0 +1,85 @@
+@import '../../utils/vars';
+
+$tab-border: 3px solid transparent;
+$tab-border-inactive: 3px solid rgba($bPrimary, .3);
+$tab-border-active: 3px solid $bPrimary;
+
+:host {
+    > .header {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        color: $bDark;
+
+        &.center {
+            justify-content: center;
+        }
+
+        &.right {
+            justify-content: flex-end;
+        }
+
+        > h1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 18px;
+            height: 100%;
+            border-bottom: 3px solid transparent;
+            user-select: none;
+        }
+
+        > ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            height: 100%;
+
+
+            > li {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0 20px;
+                margin: 0;
+                font-size: 16px;
+                height: 100%;
+                border-bottom: $tab-border-inactive;
+                opacity: .7;
+                user-select: none;
+                white-space: nowrap;
+
+                &:hover {
+                    cursor: pointer;
+                    border-bottom: $tab-border-inactive;
+                    opacity: 1;
+                }
+
+                &.active {
+                    color: $bPrimary;
+                    border-bottom: $tab-border-active;
+                    opacity: 1;
+                }
+            }
+        }
+
+        > > > > .before-tabs, > > > > .after-tabs {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-items: center;
+            margin-right: auto;
+            padding-left: 20px;
+        }
+
+        > > > > .after-tabs {
+            justify-content: flex-end;
+            margin-right: 0;
+            margin-left: auto;
+            padding-right: 20px;
+        }
+    }
+}

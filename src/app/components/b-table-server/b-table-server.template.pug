@@ -1,0 +1,59 @@
+table
+    thead
+        tr.header("*ngIf"="header || pag.show || search.show")
+            th("[attr.colspan]"="columns.length")
+                div
+                    h1("*ngIf"="header") {{header}}
+
+                    .right
+                        //- .search("*ngIf"="search.show", "[class.focus]"="searchFocus")
+                            bt-input(
+                            "[(ngModel)]"="search.query",
+
+                            "(keyup.enter)"="onSearch()",
+                            "[cleared]"="true",
+                            "(focus)"="onSearchFocus(focusState)")
+                            bt-button("(onClick)"="onSearch()")
+
+
+                        .pagnum("*ngIf"="pag.show")
+
+                            select(
+                            "[(ngModel)]"="pag.showOnPage",
+                            "(ngModelChange)"="onPag()")
+                                option("value"="10") 10
+                                option("value"="20") 20
+                                option("value"="30") 30
+                                option("value"="40") 40
+                                option("value"="50") 50
+
+
+        tr.colheaders
+            th("*ngFor"="let column of columns", "(click)"="onSort(column)", "[ngClass]"="checkSort(column)")
+                span {{column.header}}
+    tbody("*ngIf"="!loading")
+        tr("*ngFor"="let row of data | paginate: {itemsPerPage: pag.showOnPage, currentPage: pag.page, totalItems: pag.totalItems}")
+            td("*ngFor"="let column of columns", "(click)"="onCellClick({row: row, column: column})", "[ngClass]"="column.cssClass")
+                span("(click)"="onCellContentClick({row: row, column: column}, $event)") {{row[column.value]}}
+
+    tbody("*ngIf"="loading")
+        tr("[style.height]"="bodyHeight")
+            td("[attr.colspan]"="columns.length")
+                bt-spinner
+
+    tfoot("*ngIf"="pag.show")
+        tr
+            td("[attr.colspan]"="columns.length")
+                div
+                    .pag
+                        pagination-controls(
+                        "*ngIf"="!loading",
+                        "(pageChange)"="onPag($event)",
+                        "maxSize"="8",
+                        "directionLinks"="true")
+
+                    //div
+                        .info("*ngIf"="!pag.totalItems && !loading")
+
+                        .info(*ngIf="pag.totalItems && !loading")
+

@@ -18,10 +18,11 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "core-js": "^2.4.1",
+    "ng2-pagination": "^2.0.2",
+    "reflect-metadata": "^0.1.10",
     "rxjs": "^5.2.0",
     "systemjs": "^0.19.47",
-    "zone.js": "^0.8.5",
-    "reflect-metadata": "^0.1.10"
+    "zone.js": "^0.8.5"
   },
   "devDependencies": {
     "angular2-template-loader": "^0.6.0",

@@ -1,0 +1,146 @@
+@import '../../utils/vars';
+
+$ra-width: 500px;
+$ra-bg: darken($bDefault, 15);
+$ra-border: 1px solid darken($bDefault, 20);
+
+:host {
+    position: fixed;
+    overflow-x: hidden;
+    right: -$ra-width;
+    top: 0;
+    width: $ra-width;
+    height: 100vh;
+    transition: right .2s ease-out;
+    background: $ra-bg;
+    border-left: $ra-border;
+    z-index: 10003;
+    display: flex;
+    flex-direction: column;
+
+    &[ng-reflect-open="true"] {
+        right: 0;
+    }
+
+    > .close {
+        position: absolute;
+        top: 12px;
+        right: 15px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+
+        > svg {
+            fill: $bDark;
+            transition: fill .2s;
+        }
+
+        &:hover {
+            & > svg {
+                fill: $bPrimary;
+            }
+        }
+    }
+
+    >>> .ra-header {
+        width: 100%;
+        height: 50px;
+        flex-shrink: 0;
+        border-bottom: $ra-border;
+        background: darken($ra-bg, 10);
+        padding: 0 40px 0 10px;
+        display: flex;
+        align-items: center;
+
+        > .title {
+            font-size: 20px;
+        }
+    }
+
+    >>> .ra-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow-y: hidden;
+        margin: 0;
+
+        > bt-spinner {
+            align-self: center;
+            margin-top: 50px;
+            height: 50px;
+        }
+
+        .ra-inner-content {
+            overflow-y: auto;
+            padding: 10px;
+
+            > .row {
+                display: flex;
+                align-items: flex-end;
+                flex-wrap: nowrap;
+                margin: 10px 0;
+            }
+
+            hr {
+                margin: 20px 0;
+            }
+        }
+
+        .ra-footer {
+            width: 100%;
+            margin-top: auto;
+            flex-shrink: 0;
+            border-top: $ra-border;
+            background: darken($ra-bg, 10);
+            padding: 5px 10px 10px 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 80px;
+
+            > .element-group {
+                > bt-button {
+                    width: 48%;
+                }
+            }
+        }
+
+        .element-group {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+
+            > bt-input {
+                &:first-child {
+                    padding-right: 3px;
+                }
+
+                &:last-child {
+                    padding-left: 3px;
+                }
+            }
+
+            > bt-input {
+                margin-top: 5px;
+            }
+        }
+
+        label {
+            display: block;
+        }
+
+        select {
+            width: 100%;
+            height: 31px;
+            background: $bDefault;
+            border: 1px solid $bGray;
+            border-radius: 2px;
+            outline: none;
+            padding: 0 5px;
+        }
+    }
+}

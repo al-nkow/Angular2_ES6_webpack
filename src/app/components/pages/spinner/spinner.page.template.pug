@@ -1,0 +1,22 @@
+article
+    h1.doc-head Spinner (#[.hl bt-spinner])
+
+    p Flexible spinner using CSS3 animations.
+
+    h2 Inputs:
+    ul
+        li #[.hl type] - type attribute, #[.hl1 string];
+
+    h2 Example usage:
+
+    div.example
+        .demo-spinner-wrap
+            bt-spinner([type]="your_type")
+
+    h2 Code:
+    bt-tabs
+        .tabs
+            bt-tab(title="Pug")
+                pre
+                    code(class="pug hljs")
+                        | bt-spinner([type]="your_type")

@@ -1,0 +1,16 @@
+article
+    h1 Table with server pagination, search and sort (#[.hl bt-table-serverpag])
+    h2 Inputs:
+    ul
+        li #[.hl data] - data for chart, #[.hl1 object];
+        li #[.hl options] - options for chart, #[.hl1 object];
+        li #[.hl chartistSrc] - chartist library source, #[.hl1 object];
+    h2 Example usage:
+    .example#example-table-serverpag
+        bt-table-serverpag("header"="Server table",
+        [data]="tableData",
+        "[pag]"="{show: true, showOnPage: 20, page: 2, totalItems: 50}",
+        "[search]"="{show: true, query: ''}")
+            bt-table-server-column("value"="name", "header"="Name")
+            bt-table-server-column("value"="surname", "header"="Surname")
+            bt-table-server-column("value"="age", "header"="Age")

@@ -1,0 +1,50 @@
+@import './../../utils/vars';
+
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > .ct-donut {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    > > > .ct-label {
+        color: $bDark;
+        fill: $bDark;
+    }
+
+    > > > .ct-slice-donut {
+        cursor: pointer;
+        transition: $bt-common-transition;
+
+        &:hover {
+            stroke-width: 60px !important;
+        }
+    }
+
+    .legend {
+        &.hidden {
+            display: none;
+        }
+
+        margin-left: 30px;
+        align-self: flex-start;
+        padding: 0;
+        overflow-y: auto;
+        flex-shrink: 0;
+
+        > li {
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            > svg {
+                margin-right: 5px;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,39 @@
+article
+    h1.doc-head Map (#[.hl bt-map])
+
+    p Map component based on Google maps API or Leaflet.
+
+    h2 Inputs:
+    ul
+        li #[.hl data] - an array of markers to be added to the map , #[.hl1 array];
+        li #[.hl provider] - maps API we will use - one of 'gmaps' or 'leaflet' , #[.hl1 string];
+        li #[.hl center] - the coordinates of the map center (lat, lng) , #[.hl1 object];
+        li #[.hl wheelZoom] - enable/disable mouse scroll wheel zoom , #[.hl1 boolean];
+        li #[.hl blockTouch] - enable/disable touch events , #[.hl1 boolean];
+    h2 Outputs:
+    ul
+        li #[.hl ready] - map ready event;
+
+    h2 Example usage:
+
+    .example
+        .demo-map-wrap
+            bt-map(
+                [data]="[{lat: 59.954030, lng: 30.355425}, {lat: 61.638195, lng: 32.883530}]",
+                [provider]="'gmaps'",
+                [center]="{lat: 59.962171, lng: 30.361873}",
+                [wheelZoom]="false"
+                )
+
+    h2 Code:
+    bt-tabs
+        .tabs
+            bt-tab(title="Pug")
+                pre
+                    code(class="pug hljs")
+                        | bt-map(
+                        |    [data]="[{{ '{' }}lat: 59.954030, lng: 30.355425{{ '}' }}, {{ '{' }}lat: 61.638195, lng: 32.883530{{ '}' }}]",
+                        |    [provider]="'gmaps'",
+                        |    [center]="{{ '{' }}lat: 59.962171, lng: 30.361873{{ '}' }}",
+                        |    [wheelZoom]="false"
+                        |    )

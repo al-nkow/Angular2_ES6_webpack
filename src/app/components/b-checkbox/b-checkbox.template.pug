@@ -1,0 +1,12 @@
+label
+    input(
+        "type"="checkbox",
+        "name"="",
+        "[attr.required]"="required ? true : null",
+        "[attr.checked]"="checked ? true : null",
+        "[attr.disabled]"="disabled ? true : null",
+        "[class.middle]"="middle",
+        "[ngModel]"="checked",
+        "(ngModelChange)"="onValueChange($event)"
+    )
+    ng-content

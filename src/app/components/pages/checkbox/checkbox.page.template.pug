@@ -1,0 +1,36 @@
+article
+    h1 Checkbox (#[.hl bt-checkbox])
+    p Super-handy component, can be used with #[span.hl ngModel] as native checkbox input.
+    h2 Inputs:
+    ul
+        li #[.hl name] - #[.hl name] attribute passed into template and attached to actual checkbox input, #[.hl1 string];
+        li #[.hl required] - #[.hl required] attribute passed to checkbox input, #[.hl1 boolean];
+        li #[.hl checked] - #[.hl checked] attribute passed to checkbox input, #[.hl1 boolean];
+        li #[.hl disabled] - #[.hl disabled] attribute passed to checkbox input, #[.hl1 boolean];
+        li #[.hl middle] - input for setting checkbox to middle state, #[.hl1 boolean];
+    h2 Outputs:
+    ul
+        li #[.hl state] - emits boolean value reflecting checkbox state;
+        li #[.hl check] - emits on check;
+        li #[.hl uncheck] - emits on uncheck;
+    h2 Example usage:
+
+    .example
+        div(style="margin-bottom: 5px;")
+            bt-checkbox I'm checkbox
+        div(style="margin-bottom: 5px;")
+            bt-checkbox([checked]="true") I'm checked
+        div(style="margin-bottom: 5px;")
+            bt-checkbox([middle]="true") I'm middle-state
+        div(style="margin-bottom: 5px;")
+            bt-checkbox((check)="wrappedConsoleLog('tabSelect: ' + $event)", (uncheck)="wrappedConsoleLog('tabSelect: ' + $event)") My outputs are used
+    
+    bt-tabs
+        .tabs
+            bt-tab(title="Pug")
+                pre
+                    code(class="pug hljs")
+                        | bt-checkbox I'm checkbox
+                        | bt-checkbox([checked]="true") I'm checked
+                        | bt-checkbox([middle]="true") I'm middle-state
+                        | bt-checkbox((check)="onCheckboxCheck()", (uncheck)="onCheckboxUncheck()") My outputs are used

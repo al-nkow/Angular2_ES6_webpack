@@ -1,0 +1,43 @@
+article
+    h1.doc-head Modal (#[.hl bt-modal])
+
+    p Open a modal window over the app's content. You can click outside to close modal.
+
+    h2 Inputs:
+    ul
+        li #[.hl open] - attribute change will show/hide the modal component, #[.hl1 boolean];
+    h2 Outputs:
+    ul
+        li #[.hl close] - close event;
+
+    h2 Example usage:
+
+    div.example
+        button.simple-button((click)="showModal()") Show modal
+
+        bt-modal("[open]"="modalOpen" "(close)"="closeEdit()")
+            .modal-title Modal header
+            .modal-content Your content here
+
+    h2 Code:
+    bt-tabs
+        .tabs
+            bt-tab(title="Pug")
+                pre
+                    code(class="pug hljs")
+                        | button((click)="showModal()") Show modal
+                        | 
+                        | bt-modal("[open]"="modalOpen" "(close)"="closeEdit()")
+                        |    .modal-title Modal header
+                        |    .modal-content Your content here
+
+            bt-tab(title="Javascript")
+                pre
+                    code(class="javascript hljs")
+                        | showModal() {{ '{' }}
+                        |    this.modalOpen = !this.modalOpen;
+                        | {{ '}' }}
+                        |
+                        | closeEdit() {{ '{' }}
+                        |    this.modalOpen = false;
+                        | {{ '}' }}

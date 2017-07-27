@@ -1,0 +1,40 @@
+article
+    h1 Tabs (#[.hl bt-tabs])
+    p Good way to show swappable content.
+    h2 Inputs:
+    ul
+        li #[.hl tabsPosition] - #[.hl1 center] or #[.hl1 right] for not standard tabs position;
+    h2 Outputs:
+    ul
+        li #[.hl tabSelect] - emits content element of selected tab on tab select;
+
+    h2 Uses inner component - tab (#[.hl bt-tab]):
+    .nested
+        h3 Inputs:
+        ul
+            li #[.hl title] - tab title, nothing special, #[.hl1 string];
+            li #[.hl active] - presets active tab, last found tab with `[active]="true"` will be preset #{' '}
+                | active first one'll be set if none found, #[.hl1 boolean];
+
+    h2 Transcluded containers:
+    ul
+        li #[.hl .before-tabs] - in header to the left from tabs;
+        li #[.hl .after-tabs] - in header to the right from tabs;
+        li #[.hl .tabs] - container for #[.hl bt-tab] components;
+
+    h2 Example usage (with its code inside):
+    bt-tabs#example-tabs(tabsPosition="center", (tabSelect)="wrappedConsoleLog('tabSelect: ' + $event)")
+        .before-tabs Yup
+        .after-tabs Dup
+        .tabs
+            bt-tab(title="Pug", [active]="true")
+                pre
+                    code(class="pug hljs")
+                        | bt-tabs#example-tabs("tabsPosition"="center", (tabSelect)="wrappedConsoleLog($event)")
+                        |     .before-tabs Yup
+                        |     .after-tabs Dup
+                        |     .tabs
+                        |         bt-tab("title"="Pug", [active]="true")
+                        |             pre
+                        |                 code(class="pug")
+                        |                     // oops, recursion

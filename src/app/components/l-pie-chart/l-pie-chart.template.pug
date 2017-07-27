@@ -1,0 +1,6 @@
+.svg
+ul.legend
+    li("*ngFor"="let label of labels;let i = index;", "class"="{{getLabelClass(i)}}")
+        svg("width"="15px", "height"="15px")
+            rect.ct-slice-pie("width"="15px", "height"="15px")
+        span {{label}}

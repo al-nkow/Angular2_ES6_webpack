@@ -1,0 +1,47 @@
+article
+    h1.doc-head Right aside (#[.hl bt-right-aside])
+
+    p A Right-aside component that can be opened and closed programmatically.
+
+    h2 Inputs:
+    ul
+        li #[.hl open] - attribute change will show/hide the right-aside component, #[.hl1 boolean];
+    h2 Outputs:
+    ul
+        li #[.hl close] - close event;
+
+    h2 Example usage:
+
+    div.example
+        button.simple-button((click)="showRightAside()") Show right aside
+
+        bt-right-aside("[open]"="raOpen" "(close)"="closeEdit()")
+            .ra-header
+                div(style="padding: 5px;") Your content here
+            .ra-content
+                div(style="padding: 10px;") Your content here
+
+    h2 Code:
+    bt-tabs
+        .tabs
+            bt-tab(title="Pug")
+                pre
+                    code(class="pug hljs apache")
+                        | button((click)="showRightAside()") Show right aside
+                        | 
+                        | bt-right-aside("[open]"="raOpen" "(close)"="closeEdit()")
+                        |   .ra-header
+                        |       div Your content here
+                        |   .ra-content
+                        |       div Your content here
+
+            bt-tab(title="Javascript")
+                pre
+                    code(class="javascript hljs")
+                        | showRightAside() {{ '{' }}
+                        |     this.raOpen = !this.raOpen;
+                        | {{ '}' }}
+                        |
+                        | closeEdit() {{ '{' }}
+                        |     this.raOpen = false;
+                        | {{ '}' }}

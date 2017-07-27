@@ -1,0 +1,80 @@
+@import './../../utils/vars';
+
+$checkbox-size: 16px;
+
+:host {
+    & > label {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        :hover {
+            cursor: pointer;
+        }
+
+        & > input {
+            width: $checkbox-size;
+            height: $checkbox-size;
+            border-radius: 2px;
+            margin-right: 10px;
+            margin-left: 0;
+            position: relative;
+
+            &:before, &:after {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: $checkbox-size;
+                height: $checkbox-size;
+                content: "";
+                display: block;
+                transition: all .3s;
+            }
+
+            &:before {
+                background-image: url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4KICAgIDxwYXRoIGQ9Ik05IDE2LjJMNC44IDEybC0xLjQgMS40TDkgMTkgMjEgN2wtMS40LTEuNEw5IDE2LjJ6Ii8+Cjwvc3ZnPg==');
+                background-size: contain;
+                visibility: hidden;
+                z-index: 1;
+            }
+
+            &:after {
+                background-color: $bDefault;
+                border-radius: 2px;
+                border: 1px solid $bDark;
+                box-sizing: border-box;
+            }
+
+            &:checked {
+                &:after {
+                    background-color: $bPrimary;
+                    border: 1px solid $bPrimary;
+                }
+                &:before {
+                    visibility: visible;
+                }
+            }
+
+            &.middle {
+                &:after {
+                    background: $bPrimary;
+                    border-width: 0;
+                }
+                &:before {
+                    visibility: visible;
+                    width: 8px;
+                    height: 2px;
+                    background: $bDefault;
+                    background-image: none;
+                    margin-top: 7px;
+                    margin-left: 4px;
+                }
+            }
+        }
+
+        > span {
+            width:100%;
+            user-select: none;
+        }
+    }
+}

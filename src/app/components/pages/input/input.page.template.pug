@@ -1,0 +1,88 @@
+article
+    h1 Input (#[.hl bt-input])
+    h2 Inputs:
+    ul
+        li #[.hl name] - input name, #[.hl1 string];
+        li #[.hl type] - input type, #[.hl1 string];
+        li #[.hl label] - input label, #[.hl1 string];
+        li #[.hl placeholder] - input placeholder, #[.hl1 string];
+        li #[.hl required] - input required attribute, #[.hl1 boolean];
+        li #[.hl value] - input initial value;
+        li #[.hl errors] - errors from form control, #[.hl1 object];
+        li #[.hl dirty] - dirty from form control, #[.hl1 boolean];
+        li #[.hl form] - input form attribute, #[.hl1 string];
+        li #[.hl clearable] - show clear button on the right side of the input, #[.hl1 boolean];
+    h2 Outputs:
+    ul
+        li #[.hl focus] - emits focus state of input on focus and blur, #[.hl1 boolean];
+        li #[.hl cleared] - emits when clearable input is cleared;
+    h2 Example usage in forms:
+    .example#example-input
+        form(
+        "[formGroup]"="form",
+        )
+            bt-input(
+            "label"="Email",
+            "formControlName"="email",
+            "[required]"="true",
+            "[dirty]"="form.controls.email.dirty",
+            "[errors]"="form.controls.email.errors",
+            )
+            bt-input(
+            "label"="Password",
+            "type"="password",
+            "formControlName"="password",
+            "[required]"="true",
+            "[dirty]"="form.controls.password.dirty",
+            "[errors]"="form.controls.password.errors",
+            )
+    h2 Code:
+    bt-tabs(tabsPosition="center")
+        .tabs
+            bt-tab(title="Pug")
+                pre
+                    code(class="pug hljs")
+                        | form(
+                        | "[formGroup]"="form",
+                        | )
+                        |     bt-input(
+                        |     "label"="Email",
+                        |     "formControlName"="email",
+                        |     "[required]"="true",
+                        |     "[dirty]"="form.controls.email.dirty",
+                        |     "[errors]"="form.controls.email.errors",
+                        |     )
+                        |     bt-input(
+                        |     "label"="Password",
+                        |     "type"="password",
+                        |     "formControlName"="password",
+                        |     "[required]"="true",
+                        |     "[dirty]"="form.controls.password.dirty",
+                        |     "[errors]"="form.controls.password.errors",
+                        |     )
+            bt-tab(title="Javascript")
+                pre
+                    code(class="javascript hljs")
+                        | this.form = this.builder.group({{ '{' }}
+                        |     'email': ['', [Validators.required, Validators.pattern('[a-zA-Z0-9\.\_\%\+\-]+\@[a-zA-Z0-9\.\_\%\+\-]+')]],
+                        |     'password': ['', [Validators.required, Validators.minLength(8)]],
+                        | {{ '}' }});
+
+    h2 Example usage without forms:
+    .example#example-input-noform
+        bt-input(
+        "label"="Standalone",
+        "[(ngModel)]"="inputValue",
+        )
+        span {{inputValue}}
+    h2 Code:
+    bt-tabs(tabsPosition="center")
+        .tabs
+            bt-tab(title="Pug")
+                pre
+                    code(class="pug hljs")
+                        | bt-input(
+                        | "label"="Standalone",
+                        | "[(ngModel)]"="inputValue",
+                        | )
+                        | span {{ '{' }}{{ '{' }}inputValue{{ '}' }}{{ '}' }}

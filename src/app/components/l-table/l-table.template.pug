@@ -1,0 +1,246 @@
+table
+    thead
+        //- width for th works not ok after colspan, so apply it in first hidden row
+        tr.widthfix
+            th(
+            "*ngFor"="let column of columns",
+            "[ngStyle]"="{'width': column.width}"
+            )
+
+        tr.header("*ngIf"="header || pag || search")
+            th("[attr.colspan]"="columns.length")
+                div
+                    .title("*ngIf"="header") {{header}}
+                        ng-content("select"=".notification")
+
+
+                    //.search("*ngIf"="search && !server", "[class.focus]"="searchFocus", "[style.margin-left]"="getSearchMargin()")
+                        bt-input(
+                        "[(ngModel)]"="query",
+                        "(keyup)"="filter()",
+
+                        "(focus)"="onSearchFocus($event)"
+                        )
+
+                    //.search.server("*ngIf"="search && server", "[class.focus]"="searchFocus", "[style.margin-left]"="getSearchMargin()")
+                        bt-input(
+                        "[(ngModel)]"="serverQuery",
+
+                        "(keyup.enter)"="onServerSearch()",
+                        "[clear]"="true",
+                        "(cleared)"="onSearchReset()",
+                        "[height]"="32",
+                        "(focus)"="onSearchFocus($event)"
+                        )
+                        bt-button(
+                        "color"="default",
+                        "[disabled]"="!serverQuery",
+                        "(onClick)"="onServerSearch()"
+                        )
+
+
+                    //.pagnum("*ngIf"="pag && !server")
+                        .select
+                            select("[(ngModel)]"="showNum")
+                                option("value"="10") 10
+                                option("value"="20") 20
+                                option("value"="30") 30
+                                option("value"="40") 40
+                                option("value"="50") 50
+
+                    //.pagnum("*ngIf"="pag && server")
+                        .select
+                            select(
+                            "[(ngModel)]"="showNum",
+                            "(ngModelChange)"="onServerPag()"
+                            )
+                                option("value"="10") 10
+                                option("value"="20") 20
+                                option("value"="30") 30
+                                option("value"="40") 40
+                                option("value"="50") 50
+
+        tr.colheaders("*ngIf"="!server")
+            th(
+            "*ngFor"="let column of columns",
+            "[class]"="selectedClass(column.value, column.order)",
+            "(click)"="changeSorting(column.order || column.value, column.orderField)"
+            )
+                span("*ngIf"="column.control !== 'checkbox'") {{column.header}}
+                span("*ngIf"="column.control === 'checkbox'")
+                    bt-checkbox(
+                    "[checked]"="allChecked===true",
+                    "[middle]"="allChecked==='middle'",
+                    "(check)"="onAllCheck(row)",
+                    "(uncheck)"="onAllUncheck(row)",
+                    "(click)"="$event.stopPropagation()"
+                    ) {{column.header}}
+
+        tr.colheaders("*ngIf"="server")
+            th(
+            "*ngFor"="let column of columns",
+            "[class]"="selectedClass(column.value, column.order)",
+            "(click)"="changeSorting(column.order || column.value, column.orderField)"
+            )
+                span("*ngIf"="column.control !== 'checkbox'") {{column.header}}
+                span("*ngIf"="column.control === 'checkbox'")
+                    bt-checkbox(
+                    "[checked]"="allChecked===true",
+                    "[middle]"="allChecked==='middle'",
+                    "(check)"="onAllCheck(row)",
+                    "(uncheck)"="onAllUncheck(row)",
+                    "(click)"="$event.stopPropagation()"
+                    ) {{column.header}}
+
+    tbody("*ngIf"="!server && !loading")
+        tr(
+        "*ngFor"="let row of getData() | orderBy : convertSorting() | paginate: { itemsPerPage: showNum, currentPage: p }",
+        "(click)"="onRowClick(row)",
+        "(dblclick)"="onRowDoubleClick(row)",
+        "[class.highlight]"="highlight.field && row[highlight.field] === highlight.equal",
+        )
+            td(
+            "*ngFor"="let column of columns",
+            "[class.clickable]"="column.control === 'clickable'",
+            "[class.wordWrap]"="column.wordWrap",
+            "(click)"="onCellClick(column.control === 'clickable', row)",
+            "[ngStyle]"="column.style"
+            )
+                span("*ngIf"="!column.control || column.control === 'clickable'")
+                    span.indicator(
+                    "*ngIf"="row[column.indicateByField]",
+                    "[ngStyle]"="column.indicatorStyle"
+                    ) {{column.indicatorText}}&nbsp;
+                    span {{row[column.value]}}
+
+                a(
+                "*ngIf"="column.control === 'link'",
+                "[attr.href]"="row[column.value]",
+                "target"="_blank",
+                "[attr.title]"="row[column.value]"
+                )
+                    span.indicator(
+                    "*ngIf"="column.indicateByField",
+                    "[ngStyle]"="column.indicatorStyle"
+                    ) {{column.indicatorText}}&nbsp;
+                    span {{row[column.value]}}
+
+                span("*ngIf"="column.control === 'checkbox'")
+                    bt-checkbox(
+                    "[(ngModel)]"="row.checked",
+                    "(check)"="onRowCheck(row)",
+                    "(uncheck)"="onRowUncheck(row)"
+                    )
+                        span.indicator(
+                        "*ngIf"="column.indicateByField",
+                        "[ngStyle]"="column.indicatorStyle"
+                        ) {{column.indicatorText}}&nbsp;
+                        span {{row[column.value]}}
+
+                span.output("*ngIf"="column.control === 'output'")
+                    span(*ngIf="row[column.value]") {{row[column.value]}}
+                    span(*ngIf="!row[column.value]") {{row[column.value]}}
+                    .a("(click)"="onOutputClick(row)")
+                        span(*ngIf="row[column.value]") {{column.title}}
+                        span(*ngIf="!row[column.value]") {{column.altTitle}}
+
+                span.output("*ngIf"="column.control === 'html'")
+                    span([innerHTML]="row[column.value]")
+
+    tbody("*ngIf"="server && !loading")
+        tr.notification-row("*ngIf"="getNotificationRowState() === 'select-all'")
+            td("[attr.colspan]"="columns.length")
+
+
+        tr.notification-row("*ngIf"="getNotificationRowState() === 'unselect-all'")
+            td("[attr.colspan]"="columns.length")
+
+
+        tr.notification-row("*ngIf"="getNotificationRowState() === 'select-all-limited'")
+            td("[attr.colspan]"="columns.length")
+
+
+        tr.notification-row("*ngIf"="getNotificationRowState() === 'unselect-all-cropped'")
+            td("[attr.colspan]"="columns.length")
+
+
+        tr.notification-row("*ngIf"="getNotificationRowState() === 'selecting'")
+            td("[attr.colspan]"="columns.length")
+
+
+        tr(
+        "*ngFor"="let row of dataset | paginate: {itemsPerPage: showNum, currentPage: p, totalItems: totalItems}",
+        "(click)"="onRowClick(row)",
+        "(dblclick)"="onRowDoubleClick(row)"
+        "[class.highlight]"="highlight.field && row[highlight.field] === highlight.equal",
+        )
+            td(
+            "*ngFor"="let column of columns",
+            "[class.clickable]"="column.control === 'clickable'",
+            "[class.wordWrap]"="column.wordWrap",
+            "(click)"="onCellClick(column.control === 'clickable', row)",
+            "[ngStyle]"="column.style"
+            )
+                span("*ngIf"="!column.control || column.control === 'clickable'")
+                    span.indicator(
+                    "*ngIf"="row[column.indicateByField]",
+                    "[ngStyle]"="column.indicatorStyle"
+                    ) {{column.indicatorText}}&nbsp;
+                    span {{row[column.value]}}
+
+                a(
+                "*ngIf"="column.control === 'link'",
+                "[attr.href]"="row[column.value]",
+                "target"="_blank",
+                "[attr.title]"="row[column.value]"
+                )
+                    span.indicator(
+                    "*ngIf"="column.indicateByField",
+                    "[ngStyle]"="column.indicatorStyle"
+                    ) {{column.indicatorText}}&nbsp;
+                    span {{row[column.value]}}
+
+                span("*ngIf"="column.control === 'checkbox'")
+                    bt-checkbox(
+                    "[(ngModel)]"="row.checked",
+                    "(check)"="onRowCheck(row)",
+                    "(uncheck)"="onRowUncheck(row)"
+                    )
+                        span.indicator(
+                        "*ngIf"="column.indicateByField",
+                        "[ngStyle]"="column.indicatorStyle"
+                        ) {{column.indicatorText}}&nbsp;
+                        span {{row[column.value]}}
+
+                span.output("*ngIf"="column.control === 'output'")
+                    span(*ngIf="row[column.value]") {{row[column.value]}}
+                    span(*ngIf="!row[column.value]") {{row[column.value]}}
+                    .a("(click)"="onOutputClick(row)")
+                        span(*ngIf="row[column.value]") {{column.title}}
+                        span(*ngIf="!row[column.value]") {{column.altTitle}}
+
+                span.output("*ngIf"="column.control === 'html'")
+                    span([innerHTML]="row[column.value]")
+
+    tbody("*ngIf"="loading")
+        tr
+            td("[attr.colspan]"="columns.length")
+                bt-spinner
+
+    tr.footer("*ngIf"="pag")
+        td("[attr.colspan]"="columns.length")
+            div
+                .pag("*ngIf"="!server")
+                    pagination-controls(
+                    "*ngIf"="!loading",
+                    "(pageChange)"="p = $event",
+                    "maxSize"="9",
+                    "directionLinks"="true")
+
+                .pag("*ngIf"="server")
+                    pagination-controls(
+                    "*ngIf"="!loading",
+                    "(pageChange)"="onServerPag($event)",
+                    "maxSize"="9",
+                    "directionLinks"="true")
+

@@ -1,0 +1,298 @@
+@import "./../../utils/vars.scss";
+
+$border: 1px solid darken($bDefault, 20);
+$border-light: 1px solid darken($bDefault, 10);
+
+:host {
+    display: block;
+    border: $border;
+    border-radius: 2px;
+    background: $bDefault;
+
+    > table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+
+        > thead {
+            border-bottom: $border;
+
+            > tr {
+                height: 50px;
+
+                &.header {
+                    height: 70px;
+
+                    > th {
+                        cursor: default;
+
+                        > div {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+
+                            > h1 {
+                                font-size: 22px;
+                                margin: 0;
+                                font-weight: 400;
+                                flex-grow: 2;
+                                white-space: nowrap;
+                            }
+
+                            > .right {
+                                display: flex;
+                                align-items: center;
+                                margin-left: auto;
+                                flex-grow: 1;
+                                justify-content: flex-end;
+
+                                > .search {
+                                    display: flex;
+                                    flex-grow: 1;
+                                    min-width: 150px;
+                                    max-width: 350px;
+                                    margin-right: 50px;
+                                    border: $border;
+                                    border-radius: 2px;
+                                    transition: .2s;
+
+                                    bt-button {
+                                        > > > button {
+                                            height: 100%;
+                                            border: 0;
+                                            border-left: $border;
+                                        }
+                                    }
+
+                                    bt-input {
+                                        > > > .input {
+                                            border: none;
+                                        }
+                                    }
+
+                                    &.focus {
+                                        border: 1px solid $bPrimary;
+
+                                        bt-button {
+                                            > > > button {
+                                                border-left: 1px solid $bPrimary;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                > .pagnum {
+                                    display: flex;
+                                    align-items: center;
+                                    flex-wrap: nowrap;
+                                    white-space: nowrap;
+
+                                    > select {
+                                        padding: 3px 2px;
+                                        border: $border;
+                                        background: $bDefault;
+                                        border-radius: 2px;
+                                        box-shadow: none;
+                                        outline: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    + .colheaders {
+                        border-top: $border;
+                    }
+                }
+
+                &.colheaders {
+                    > th {
+                        position: relative;
+                        border-left: $border;
+                        user-select: none;
+                        cursor: pointer;
+
+                        &:first-child {
+                            border: none;
+                        }
+
+                        $arrow-border-width: 10px;
+
+                        &:before, &:after {
+                            content: '';
+                            position: absolute;
+                            top: 12px;
+                            right: 20px;
+                            border-bottom: $arrow-border-width solid darken($bDefault, 10);
+                            border-left: $arrow-border-width solid transparent;
+                            border-right: $arrow-border-width solid transparent;
+                            box-sizing: border-box;
+                        }
+
+                        &:after {
+                            top: auto;
+                            bottom: 12px;
+                            border-top: $arrow-border-width solid darken($bDefault, 10);
+                            border-bottom: none;
+                        }
+
+                        &.ascending {
+                            &:after {
+                                display: none;
+                            }
+
+                            &:before {
+                                border-bottom: $arrow-border-width solid $bPrimary;
+                            }
+                        }
+
+                        &.descending {
+                            &:before {
+                                display: none;
+                            }
+
+                            &:after {
+                                border-top: $arrow-border-width solid $bPrimary;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        > tbody {
+            > tr {
+                border-bottom: $border-light;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                > td {
+                    font-weight: 300;
+                }
+            }
+        }
+
+        // COMMON FOR THEAD AND TBODY
+        tr {
+            height: 40px;
+
+            &:nth-child(even) {
+                background: darken($bDefault, 2);
+            }
+        }
+
+        th, td {
+            text-align: start;
+            padding: 0 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        > tfoot {
+            border-top: $border;
+
+            > tr {
+                > td {
+                    > div {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        flex-wrap: nowrap;
+
+                        > .pag {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            user-select: none;
+
+                            > pagination-controls {
+                                display: flex;
+                                align-items: center;
+
+                                > > > > ul {
+                                    padding: 0;
+                                    margin: 10px 0;
+                                    display: flex;
+                                    flex-wrap: nowrap;
+                                    color: $bDark;
+
+                                    > li {
+                                        border: $border;
+                                        border-right: none;
+                                        margin: 0;
+                                        padding: 0;
+
+                                        &:last-of-type {
+                                            border-right: $border;
+                                            border-radius: 0 2px 2px 0;
+                                        }
+
+                                        &:first-of-type {
+                                            border-radius: 2px 0 0 2px;
+                                        }
+
+                                        &.current {
+                                            background: $bPrimary;
+                                            color: $bDefault;
+                                        }
+
+                                        &.disabled {
+                                            color: inherit;
+                                            > span {
+                                                background: darken($bDefault, 10);
+                                                cursor: not-allowed;
+                                            }
+                                        }
+
+                                        > a, > span, > div {
+                                            padding: 10px 10px;
+                                            display: block;
+                                            height: 100%;
+                                            width: 100%;
+                                            cursor: pointer;
+
+                                            &:hover {
+                                                text-decoration: none;
+                                            }
+                                        }
+                                    }
+
+                                    > .pagination-previous, > .pagination-next {
+                                        > a, > span {
+                                            width: 75px;
+                                            text-align: center;
+                                        }
+                                    }
+
+                                    > .pagination-previous {
+                                        &:before {
+                                            display: none;
+                                        }
+                                        > a {
+                                            &:before {
+                                                display: none;
+                                            }
+                                        }
+                                    }
+
+                                    > .pagination-next {
+                                        &:after {
+                                            display: none;
+                                        }
+                                        > a {
+                                            &:after {
+                                                display: none;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,147 @@
+@import './../../utils/vars';
+
+$bt-button-padding-ver: 6px;
+$bt-button-padding-hor: 12px;
+
+@mixin buttoncolor($bgcolor, $color) {
+    background-color: $bgcolor;
+    color: $color;
+    border: none;
+
+    &:hover, &:focus {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15))
+    }
+    &:active {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+        box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125)
+    }
+}
+
+:host {
+    position: relative;
+
+    // default button styles
+    button {
+        @include buttoncolor(white, $bDark);
+        position: relative;
+        padding: $bt-button-padding-ver $bt-button-padding-hor;
+        font-size: 14px;
+        line-height: 1.5;
+        border: 1px solid darken(white, 10%);
+        border-radius: $bt-common-border-radius;
+        outline: 0;
+        overflow: hidden;
+        width: 100%;
+        white-space: nowrap;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        // size
+        &[size="lg"] {
+            padding: 10px 16px;
+            font-size: 18px;
+        }
+
+        &[size="sm"] {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        &[size="xs"] {
+            padding: 1px 5px;
+            font-size: 12px;
+        }
+
+        // colors
+        &[color="default"][loading] {
+            >>> bt-spinner {
+                .wave {
+                    .spinner-rect {
+                        background-color: $bPrimary;
+                    }
+                }
+            }
+        }
+
+        &[color="primary"] {
+            @include buttoncolor($bPrimary, white);
+        }
+
+        &[color="success"] {
+            @include buttoncolor($bSuccess, white);
+        }
+
+        &[color="danger"] {
+            @include buttoncolor($bDanger, white);
+        }
+
+        &[color="dark"] {
+            @include buttoncolor($bDark, white);
+        }
+
+        // modificators
+        &[rounded] {
+            // about a half of lg button height
+            border-radius: 60px;
+        }
+
+        &[disabled] {
+            cursor: not-allowed;
+            opacity: .65;
+        }
+
+        > bt-spinner {
+            display: none;
+        }
+
+        &[loading] {
+            > .content {
+                visibility: hidden;
+            }
+            > bt-spinner {
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: inline-block;
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        &.select {
+            $arrow-container-width: 30px;
+
+            padding-right: $bt-button-padding-hor + $arrow-container-width;
+
+            > .arrow-container {
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 100%;
+                width: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                > .arrow {
+                    $arrow-size: 5px;
+                    border-top: $arrow-size solid $bDark;
+                    border-left: $arrow-size solid transparent;
+                    border-right: $arrow-size solid transparent;
+                }
+            }
+        }
+    }
+
+    > select {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+}

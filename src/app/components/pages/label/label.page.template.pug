@@ -1,0 +1,18 @@
+article
+    h1.doc-head Label (#[.hl bt-label])
+    p Component inserts a marker in front of element.
+
+    h2 Example usage:
+    div.example
+        bt-label(color="red")
+            span Some text here
+
+    h2 Code:
+    bt-tabs
+        .tabs
+            bt-tab(title="Pug")
+                pre
+                    code(class="pug hljs apache")
+                        | bt-label
+                        |     span Some text here
+

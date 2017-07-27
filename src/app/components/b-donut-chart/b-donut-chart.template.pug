@@ -1,0 +1,6 @@
+.ct-donut
+ul.legend("[class.hidden]"="!showLegend")
+    li("*ngFor"="let label of legendLabels; let i = index;", "[ngClass]"="getLabelClass(i)")
+        svg("width"="16px", "height"="16px")
+            circle.ct-slice-donut("cx"="8px", "cy"="8px", "r"="3", "style"="stroke-width:6px")
+        span {{label}}

@@ -1,0 +1,14 @@
+@import '../../utils/vars';
+
+:host {
+    display: flex;
+    align-items: center;
+
+    > .badge {
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        margin-right: 5px;
+        background: $bPrimary;
+    }
+}

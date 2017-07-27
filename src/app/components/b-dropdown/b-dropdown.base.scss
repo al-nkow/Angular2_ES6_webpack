@@ -1,0 +1,50 @@
+@import './../../utils/icons';
+@import './../../utils/vars';
+
+:host {
+    position: relative;
+
+    .icon {
+        position: absolute;
+        right: 1px;
+        bottom: 1px;
+        padding: 3px;
+
+        .bti {
+            width: 25px;
+            height: 25px;
+        }
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        background: white;
+        position: absolute;
+        border: $bt-common-border;
+        width: 100%;
+        z-index: 1;
+        max-height: 200px;
+        overflow: auto;
+
+        li {
+            border-bottom: $bt-common-border;
+
+            a {
+                display: block;
+                padding: 5px;
+                cursor: pointer;
+
+                &:hover {
+                    background: $bGray;
+                }
+            }
+
+            &:last-of-type {
+                border-bottom: none;
+            }
+        }
+    }
+}
+

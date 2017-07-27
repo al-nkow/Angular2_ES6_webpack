@@ -1,0 +1,7 @@
+bt-button("(click)"="toggle()","color"="{{color}}")
+    span("innerHtml"="{{name}}")
+    div.icon
+        i.bti("[ngClass]"="{'bti-keyboard-arrow-down': !isOpened, 'bti-keyboard-arrow-up': isOpened}")
+ul("[hidden]"="!isOpened")
+    li("*ngFor"="let item of items")
+        a("[innerHtml]"="item.label", "(click)"="onItemClick(item)")

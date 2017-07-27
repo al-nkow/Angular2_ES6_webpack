@@ -1,0 +1,175 @@
+@import './../../utils/vars';
+
+$aside-width: 250px;
+$aside-logo-height: 50px;
+
+:host {
+    display: flex;
+    flex-direction: column;
+
+    /deep/ aside {
+        box-sizing: border-box;
+        position: fixed;
+        width: $aside-width;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        border-right: $bt-common-border;
+
+        .logo {
+            //display: flex;
+            display: block;
+            height: $aside-logo-height;
+            align-items: center;
+            border-bottom: $bt-common-border;
+            margin-bottom: 10px;
+
+            > svg {
+                fill: $bPrimary;
+                width: 40px;
+                vertical-align: middle;
+            }
+
+            > h1 {
+                font-family: 'Oswald', sans-serif;
+                color: $bPrimary;
+                font-weight: 400;
+                font-size: 24px;
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0;
+            }
+        }
+
+        > a {
+            margin: 5px 0 5px 40px;
+            text-decoration: none;
+            font-weight: 300;
+            color: $bPrimary;
+            cursor: pointer;
+
+            &:first-letter {
+                text-transform: capitalize;
+            }
+
+            &.top {
+                font-family: 'Oswald', sans-serif;
+                margin-left: 0;
+                font-size: 18px;
+                font-weight: 400;
+                color: $bDark;
+            }
+
+            &.middle {
+                margin-left: 20px;
+                font-size: 18px;
+                font-weight: 400;
+                color: $bDark;
+            }
+
+            &:hover {
+                opacity: .6;
+            }
+        }
+    }
+
+    /deep/ section {
+        display: flex;
+        flex-direction: column;
+        margin-left: $aside-width;
+        padding: 10px;
+
+        /deep/ article {
+
+            padding: 20px;
+            // border-bottom: $bt-common-border;
+            color: $bDark;
+
+            &:first-of-type {
+                padding-top: 0;
+            }
+
+            &:nth-of-type(even) {
+                margin-left: -10px;
+                margin-right: -10px;
+                padding-left: 30px;
+                padding-right: 30px;
+                background: rgba($bGray, .2);
+
+                > bt-tabs {
+                    > > > > .header {
+                        background: $bDefault;
+                    }
+                }
+            }
+
+            > h1 {
+                font-family: 'Oswald', sans-serif;
+                display: flex;
+                align-items: center;
+                margin: 0;
+                height: $aside-logo-height;
+                font-weight: 400;
+                font-size: 26px;
+            }
+
+            h2 {
+                margin-bottom: 5px;
+                font-size: 18px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+
+            ul {
+                list-style-type: circle;
+                margin-top: 5px;
+
+                > li {
+                    margin: 10px 0;
+                }
+            }
+
+            > .example {
+                padding: 10px 20px;
+            }
+
+            > bt-tabs {
+                border-radius: 2px;
+
+                /deep/ .header {
+                    background: rgba($bGray, .2);
+                }
+            }
+
+            pre {
+                margin: 0;
+
+                > code {
+                    padding: 20px;
+                    line-height: 2;
+                    font-size: 16px;
+                }
+            }
+
+            > .nested {
+                padding-left: 40px;
+            }
+
+            .hl, .hl1 {
+                display: inline-block;
+                background: rgba($bDanger, .1);
+                color: $bPrimary;
+                padding: 2px 5px;
+                border-radius: 2px;
+            }
+
+            .hl1 {
+                background: rgba($bPrimary, .1);
+                color: darken($bDanger, 20);
+            }
+        }
+    }
+}

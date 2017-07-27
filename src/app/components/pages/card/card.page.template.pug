@@ -1,0 +1,26 @@
+article
+    h1.doc-head Card (#[.hl bt-card])
+
+    p Card with header, footer and content. Put your text or components in blocks with similar classes.
+
+    h2 Example usage:
+
+    div.example
+        bt-card
+            .header
+                div(style="padding: 10px;") Your header here
+            .content
+                div(style="padding: 10px;") Put your text or some content here
+            .footer
+                div(style="padding: 10px;") This is footer
+
+    h2 Code:
+    bt-tabs
+        .tabs
+            bt-tab(title="Pug")
+                pre
+                    code(class="pug hljs")
+                        | bt-card
+                        |    .header Your header here
+                        |    .content Put your text or some content here
+                        |    .footer This is footer
